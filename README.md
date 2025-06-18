@@ -1,8 +1,10 @@
 # NixOS Docker Compose Module
 
-A simple and robust NixOS module to declaratively manage Docker Compose projects.
+A simple and robust NixOS module to declaratively manage Docker Compose services.
 
-This module creates systemd services that gracefully handle `nixos-rebuild switch` by using stable project names and properly managing the `up` and `down` lifecycle.
+Using this module, installing a service through a Docker Compose file is as easy as pointing to its directory with `dockerComposeServices.composeDirs` from your `configuration.nix`.
+
+Everything alongside the compose file will also be copied and installed, and if any of those files change or the machine reboots, the services will be restarted.
 
 ## Usage
 
@@ -58,7 +60,7 @@ By default, the systemd services that manage your Docker Compose projects run as
 
 ## How It Works
 
-For each directory provided, the module creates a systemd service with the following behavior:
+This module creates systemd services that gracefully handle `nixos-rebuild switch` by using stable project names and properly managing the `up` and `down` lifecycle. For each directory provided, the module creates a systemd service with the following behavior:
 
 - **`ExecStart`**: Runs `docker compose -p <dir-name> up -d --remove-orphans`.
 - **`ExecStop`**: Runs `docker compose -p <dir-name> down`.
