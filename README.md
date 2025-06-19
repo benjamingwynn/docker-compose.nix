@@ -17,7 +17,7 @@ In your system's `flake.nix`, add this repository as an input:
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Add this flake as an input
-    docker-compose-services.url = "github:benjamingwynn/docker-compose.nix";
+    docker-compose-services.url = "github:benjamingwynn/docker-compose-services.nix";
   };
 
   outputs = { self, nixpkgs, docker-compose-services }: {
